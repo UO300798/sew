@@ -11,14 +11,17 @@ body {
 /* Selector: header -> especificidad 0,0,1 */
 header {
     background-color: #e0b7a5;  /* Coral */
+    color: #000000;
 }
 
 /* Selector: h1 -> especificidad 0,0,1 */
 h1 {
     color: #a45c40;             /* Desert Sun */
+    background-color: #ffffff;
 }
 
 /* Selector: nav -> especificidad 0,0,1 */
 nav {
     color: #e4b7a0;             /* Peach */
+    background-color: #ffffff;
 }
