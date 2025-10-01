@@ -3,14 +3,14 @@
 
 /* Selector: body -> especificidad 0,0,1 */
 body {
-    background-color: #f6eee0;  /* Cream */
-    color: #a45c40;             /* Desert Sun */
+    background-color: #ffffff;  /* Cream */
+    color: #000000;             /* Desert Sun */
     font-family: Tahoma, Arial, Verdana, sans-serif; 
 }
 
 /* Selector: header -> especificidad 0,0,1 */
 header {
-    background-color: #c38370;  /* Coral */
+    background-color: #e0b7a5;  /* Coral */
 }
 
 /* Selector: h1 -> especificidad 0,0,1 */
