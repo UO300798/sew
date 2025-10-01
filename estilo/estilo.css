@@ -3,25 +3,26 @@
 
 /* Selector: body -> especificidad 0,0,1 */
 body {
-    background-color: #ffffff;  /* Cream */
-    color: #000000;             /* Desert Sun */
+    background-color: #ffffff;  
+    color: #000000;             
     font-family: Tahoma, Arial, Verdana, sans-serif; 
 }
 
 /* Selector: header -> especificidad 0,0,1 */
+/* Hereda el color de body */
 header {
-    background-color: #e0b7a5;  /* Coral */
-    color: #000000;
+    background-color: #e0b7a5;  
 }
 
 /* Selector: h1 -> especificidad 0,0,1 */
+/* Hereda el background color de body */
 h1 {
-    color: #a45c40;             /* Desert Sun */
-    background-color: #ffffff;
+    color: #a45c40;             
 }
 
 /* Selector: nav -> especificidad 0,0,1 */
+/* Hereda el background color de body */
+
 nav {
-    color: #e4b7a0;             /* Peach */
-    background-color: #ffffff;
+    color: #e4b7a0;            
 }
