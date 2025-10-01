@@ -1,28 +1,24 @@
 /* Sergio Gonzalez Martinez UO300798 */
 /* Estilos generales del proyecto MotoGP-Desktop */
 
-/* 0,0,1*/
+/* Selector: body -> especificidad 0,0,1 */
 body {
-    background-color: #b1d4e0; /* Baby Blue */
-    color: #145da0; /* Midnight Blue */
+    background-color: #f6eee0;  /* Cream */
+    color: #a45c40;             /* Desert Sun */
     font-family: Tahoma, Arial, Verdana, sans-serif; 
 }
 
-
-/* 0,0,1*/
+/* Selector: header -> especificidad 0,0,1 */
 header {
-    background-color: #0c2d48; 
+    background-color: #c38370;  /* Coral */
 }
 
-
-/* 0,0,1*/
+/* Selector: h1 -> especificidad 0,0,1 */
 h1 {
-    color: #2e8bc0; 
+    color: #a45c40;             /* Desert Sun */
 }
 
-
-/* 0,0,1*/
+/* Selector: nav -> especificidad 0,0,1 */
 nav {
-    color: #b1d4e0; 
-
+    color: #e4b7a0;             /* Peach */
 }
