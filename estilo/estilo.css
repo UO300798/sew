@@ -3,21 +3,21 @@
 
 /* Selector: body -> especificidad 0,0,1 */
 body {
-    background-color: #ffffff;  
-    color: #000000;             
+    background-color: #7ec8e3;   /* Baby Blue */
+    color: #000c66;              /* Navy Blue */
     font-family: Tahoma, Arial, Verdana, sans-serif; 
 }
 
 /* Selector: header -> especificidad 0,0,1 */
 /* Hereda el color de body */
 header {
-    background-color: #e0b7a5;  
+    background-color: #050a30;   /* Dark Blue */
 }
 
 /* Selector: h1 -> especificidad 0,0,1 */
 /* Hereda el background color de body */
 h1 {
-    color: #a45c40;             
+    color: #000c66;              /* Navy Blue */
 }
 
 
@@ -26,91 +26,85 @@ h1 {
 /* Hereda el background color de body */
 
 nav {
-    color: #e4b7a0;            
+    color: #000c66;              /* Navy Blue */
 }
 
+
 nav a.active {
-    color: #751de9;
-    text-decoration : underline;    /*El 2*/
+    color: #ffffff;              /* Blue */
+    text-decoration: underline;  /*El 2*/
     font-size: 2rem;
 }
 
 p > a + strong {
-    font-size: 1.5rem;  /* El 3*/
+    font-size: 1.5rem;           /* El 3*/
     font-weight: bold;
 }
 
 header a {
-    text-decoration-line:none;  /*El 4*/
-    color: #28c42d;
-    font-size:2rem;
+    text-decoration-line: none;  /*El 4*/
+    color: #ffffff;
+    font-size: 2rem;
 }
 
-header nav a{
-    text-decoration-line:none;  /*El 4*/
-    color: #ea65a7;
-    font-size:2rem;
+header nav a {
+    text-decoration-line: none;  /*El 4*/
+    color: #ffffff;
+    font-size: 2rem;
 }
-
 /* Enlaces externos */
 a[href^="http"] {
-    color: #1a73e8;            /* Color azul para enlaces externos */
-    text-decoration: none;     /* Sin subrayado por defecto */
-    font-weight: bold;
-}
-
-a[href^="http"] {
-    color: #1a73e8;            /* Color azul para enlaces externos */
-    text-decoration: none;     /* Sin subrayado por defecto */
+    color: #0000ff;              /* Blue */
+    text-decoration: none;
     font-weight: bold;
 }
 
 /* Enlaces externos visitados */
 a[href^="http"]:visited {
-    color: #551a8b;            /* Color morado para enlaces visitados */
+    color: #000c66;              /* Navy Blue */
 }
 
 /* Efecto al pasar el mouse */
 a[href^="http"]:hover {
-    color: #ff4500;            /* Color naranja al pasar el ratón */
+    color: #050a30;              /* Dark Blue */
     text-decoration: underline;
 }
 
 /* Efecto cuando se hace clic */
 a[href^="http"]:active {
-    color: #ff0000;            /* Color rojo mientras se presiona el enlace */
+    color: #0000ff;              /* Blue */
 }
 
 
-able {
-    border-collapse: collapse;   /* Quita el doble borde */
-    width: 100%;                 /* Ocupa todo el ancho disponible */
-    margin: 1rem 0;              /* Separación arriba y abajo */
-    font-size: 1rem;             /* Tamaño de fuente */
-    text-align: center;          /* Centrar contenido */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1rem;
+    text-align: center;
 }
 
 table caption {
     font-weight: bold;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: #a45c40;
+    color: #0000ff;              /* Blue */
 }
 
 table th, table td {
-    border: 1px solid #999999;   /* Borde de celdas */
-    padding: 0.5rem 1rem;        /* Espaciado interno */
+    border: 1px solid #0000ff;   /* Blue */
+    padding: 0.5rem 1rem;
 }
 
 table th {
-    background-color: #e0b7a5;   /* Color de fondo de cabeceras */
-    color: #000000;
+    background-color: #000c66;   /* Navy Blue */
+    color: #ffffff;              /* Texto blanco */
 }
 
 dl {
-    background-color: #f9f9f9;   /* Fondo ligero */
+    background-color: #7ec8e3;   /* Baby Blue */
     padding: 1rem;
-    border-radius: 8px;           /* Bordes redondeados */
+    border-radius: 8px;
     width: 90%;
     margin: 1rem auto;
     font-family: Tahoma, Arial, Verdana, sans-serif;
@@ -118,28 +112,26 @@ dl {
 
 /* Estilo para los términos a definir */
 dl dt {
-    font-weight: bold;            /* Negrita */
-    color: #a45c40;               /* Color destacado */
-    font-size: 1.2rem;            /* Tamaño mayor */
+    font-weight: bold;
+    color: #0000ff;              /* Blue */
+    font-size: 1.2rem;
     margin-top: 0.8rem;
 }
 
-/* Estilo para las descripciones */
 dl dd {
-    margin-left: 2rem;            /* Sangría para diferenciar */
-    font-size: 1rem;              /* Tamaño normal */
-    color: #333333;               /* Color de texto más oscuro */
-    line-height: 1.5;             /* Espaciado entre líneas */
+    margin-left: 2rem;
+    font-size: 1rem;
+    color: #000c66;              /* Navy Blue */
+    line-height: 1.5;
 }
 
-/* Efecto hover en términos */
 dl dt:hover {
-    color: #ff4500;               /* Cambia color al pasar el mouse */
-    cursor: pointer;              /* Indica que es interactivo */
-    text-decoration: underline;   /* Subraya al pasar el mouse */
+    color:  #050a30;            /* Dark Blue */
+    cursor: pointer;
+    text-decoration: underline;
 }
 
-/* Opcional: efecto hover en descripciones */
 dl dd:hover {
-    background-color: #fff2e6;    /* Fondo ligeramente diferente */
+    background-color: #000c66;   /* Navy Blue */
+    color: #ffffff;              /* Texto blanco */
 }
