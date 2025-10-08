@@ -29,9 +29,32 @@ header nav {
     }
 
     /* Video y audio: ocupar todo el ancho (redefiniendo width y height) */
-    video,
-    audio {
+    video {
         width: 100%;
         height: auto;
+        margin-bottom: 1rem; /* separar del audio */
+    }
+
+    /* Audio: tamaño natural o ancho fijo */
+    audio {
+        width: 100%; /* o puedes poner width: auto; si quieres su tamaño nativo */
+        margin-top: 0.5rem;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.9rem;
+    }
+
+    table th, table td {
+        padding: 0.4rem 0.6rem;
+    }
+
+    table caption {
+        text-align: left;
+        margin-left: 0.5rem;
     }
 }
