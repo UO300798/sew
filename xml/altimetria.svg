@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" version="2.0" width="800" height="370">
+  <line x1="60" y1="60" x2="60" y2="240.0" stroke="black" strokeWidth="1" />
+  <line x1="60" y1="240.0" x2="740" y2="240.0" stroke="black" strokeWidth="1" />
+  <polyline points="60.00,240.00 60.00,188.57 162.48,229.71 167.45,224.57 175.80,224.57 181.21,219.43 198.64,193.71 206.98,178.29 217.67,168.00 227.47,157.71 238.60,152.57 246.95,147.43 286.91,132.00 292.62,126.86 298.04,126.86 303.31,121.71 308.28,121.71 315.90,121.71 346.93,147.43 350.45,152.57 353.52,157.71 356.74,162.86 379.43,209.14 391.14,219.43 412.66,209.14 417.05,204.00 424.67,188.57 430.38,178.29 458.48,116.57 464.19,111.43 471.51,106.29 476.64,106.29 539.73,132.00 549.69,137.14 553.64,132.00 557.15,132.00 561.55,132.00 566.52,126.86 570.91,121.71 575.31,116.57 586.29,101.14 590.82,90.86 595.66,85.71 599.75,80.57 605.17,80.57 631.23,96.00 637.09,101.14 641.92,111.43 670.02,157.71 676.03,162.86 681.88,168.00 686.86,173.14 740.00,188.57 740.00,240.00 60.00,240.00" stroke="red" strokeWidth="2.5" fill="none" />
+  <text x="20" y="150.0" fontFamily="sans-serif" fontSize="14" style="writing-mode: tb; text-anchor: middle;">Altitud (m)</text>
+  <text x="50" y="240.0" fontFamily="sans-serif" fontSize="12" style="text-anchor: end; dominant-baseline: middle;">110 m</text>
+  <text x="50" y="60.0" fontFamily="sans-serif" fontSize="12" style="text-anchor: end; dominant-baseline: middle;">145 m</text>
+  <text x="60.0" y="250.0" fontFamily="sans-serif" fontSize="12" style="writing-mode: tb; glyph-orientation-vertical: 0; text-anchor: start;">Sector 1</text>
+  <text x="198.63509149623252" y="250.0" fontFamily="sans-serif" fontSize="12" style="writing-mode: tb; glyph-orientation-vertical: 0; text-anchor: start;">Sector 2</text>
+  <text x="379.4316469321851" y="250.0" fontFamily="sans-serif" fontSize="12" style="writing-mode: tb; glyph-orientation-vertical: 0; text-anchor: start;">Sector 3</text>
+  <text x="539.7330462863295" y="250.0" fontFamily="sans-serif" fontSize="12" style="writing-mode: tb; glyph-orientation-vertical: 0; text-anchor: start;">Sector 4</text>
+  <text x="740.0" y="250.0" fontFamily="sans-serif" fontSize="14" style="writing-mode: tb; glyph-orientation-vertical: 0; text-anchor: start;">Final</text>
+</svg>
