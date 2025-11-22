@@ -25,6 +25,9 @@ class Circuito {
         const h3 = document.createElement('h3');
         h3.textContent = 'Carga de Archivo InfoCircuito.html';
 
+        const label = document.createElement('label');
+        label.textContent = 'Seleccionar archivo HTML: ';
+        
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.html';
@@ -33,21 +36,21 @@ class Circuito {
             this.leerArchivoHTML(evento.target.files);
         });
 
+        label.appendChild(input); // El label envuelve al input
+        
         const main = document.querySelector('main');
         if (main) {
             main.appendChild(h3);
-            main.appendChild(input);
+            main.appendChild(label);
         } else {
             document.body.appendChild(h3);
-            document.body.appendChild(input);
+            document.body.appendChild(label);
         }
     }
 
     leerArchivoHTML(files) {
         if (!files || files.length === 0) return;
-
         const archivo = files[0]; 
-
         if (archivo) {
             this.#lector.onload = (e) => {
                 const contenidoArchivo = e.target.result;
@@ -109,22 +112,29 @@ class CargadorSVG {
         this.contenedor = document.querySelector('section article');
         
         if (this.contenedor) {
-            this.crearInput();
-            this.inicializar();
+            this.inicializarInterfaz();
         }
     }
 
-    crearInput() {
+    inicializarInterfaz() {
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Carga de Archivo SVG';
+
+        const label = document.createElement('label');
+        label.textContent = 'Seleccionar archivo SVG: ';
+        
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.svg';
         
-        this.contenedor.parentNode.insertBefore(input, this.contenedor);
-        this.entrada = input;
-    }
+        input.addEventListener('change', (evento) => {
+            this.leerArchivoSVG(evento);
+        });
 
-    inicializar() {
-        this.entrada.addEventListener('change', (evento) => this.leerArchivoSVG(evento));
+        label.appendChild(input); // El label envuelve al input
+        
+        this.contenedor.parentNode.insertBefore(h3, this.contenedor);
+        this.contenedor.parentNode.insertBefore(label, this.contenedor);
     }
 
     leerArchivoSVG(evento) {
@@ -157,24 +167,29 @@ class CargadorKML {
         this.contenedor = document.getElementById('mapa');
         
         if (this.contenedor) {
-            this.crearInput();
-            this.inicializar();
+            this.inicializarInterfaz();
         }
     }
 
-    crearInput() {
+    inicializarInterfaz() {
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Carga de Archivo KML';
+
+        const label = document.createElement('label');
+        label.textContent = 'Seleccionar archivo KML: ';
+        
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.kml';
+        
+        input.addEventListener('change', (evento) => {
+            this.leerArchivoKML(evento);
+        });
 
-        this.contenedor.parentNode.insertBefore(input, this.contenedor);
-
-        this.entrada = input;
-        this.idMapa = 'mapa';
-    }
-
-    inicializar() {
-        this.entrada.addEventListener('change', (evento) => this.leerArchivoKML(evento));
+        label.appendChild(input); // El label envuelve al input
+        
+        this.contenedor.parentNode.insertBefore(h3, this.contenedor);
+        this.contenedor.parentNode.insertBefore(label, this.contenedor);
     }
 
     leerArchivoKML(evento) {
@@ -212,7 +227,7 @@ class CargadorKML {
         mapboxgl.accessToken = this.accessToken;
         
         const mapa = new mapboxgl.Map({
-            container: this.idMapa,
+            container: this.contenedor,
             style: 'mapbox://styles/mapbox/streets-v11',
             center: puntos[0],
             zoom: 14
