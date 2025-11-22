@@ -13,9 +13,6 @@
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
 
     <script src="js/cronometro.js"></script>
-    <script> 
-        const miCrono= new Cronometro();
-    </script>
     <link rel="icon" href="multimedia/favicon.ico" type="image/x-icon" />
 </head>
 
@@ -39,12 +36,14 @@
         <h2>Cronómetro</h2>
         <p>00:00.0</p>
         
-        <div>
-            <button onclick="miCrono.arrancar()">Arrancar</button>
-            <button onclick="miCrono.parar()">Parar</button>
-            <button onclick="miCrono.reiniciar()">Reiniciar</button>
-        </div>
+        <button>Arrancar</button>
+        <button>Parar</button>
+        <button>Reiniciar</button>
     </main>
+
+    <script>
+        const crono = new Cronometro();
+    </script>
     
 </body>
 </html>

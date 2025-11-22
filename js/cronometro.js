@@ -1,45 +1,62 @@
 class Cronometro {
     
+
+    #tiempo;
+    #inicio; 
+    #corriendo;
+
+
     constructor() {
-        this.tiempo = 0;
-        this.inicio = null; 
-        this.corriendo = null;
-        this.tiempoAcumulado=0;
+        this.#tiempo = 0;
+        this.#inicio = null; 
+        this.#corriendo = null;
+
+        this.#conectarBotones();
+    }
+
+    #conectarBotones() {
+        const botones = document.querySelectorAll('main button');
+        
+        if (botones.length >= 3) {
+            botones[0].addEventListener('click', () => this.arrancar());
+            botones[1].addEventListener('click', () => this.parar());
+            botones[2].addEventListener('click', () => this.reiniciar());
+        }
     }
 
     arrancar() {
-        if (this.corriendo) {
+        if (this.#corriendo) {
             return; 
         }
         try {
-            this.inicio = Temporal.Now.instant();
+            this.#inicio = Temporal.Now.instant();
         } catch (error) {
-            this.inicio = new Date();
+            this.#inicio = new Date();
         } 
-        this.corriendo = setInterval(this.actualizar.bind(this), 100);
+        this.#corriendo = setInterval(this.#actualizar.bind(this), 100);
     }
 
-    actualizar() {
+    #actualizar() {
         var milisegundosSegmento;
         
         try {
             var ahora = Temporal.Now.instant();
-            var duracion = ahora.since(this.inicio);
+            var duracion = ahora.since(this.#inicio);
             
             milisegundosSegmento = duracion.total({ unit: 'milliseconds' });
             
         } catch (error) {
             var ahora = new Date();
             
-            milisegundosSegmento = ahora - this.inicio;
+            milisegundosSegmento = ahora - this.#inicio;
         }
 
-        this.tiempo = this.tiempoAcumulado + milisegundosSegmento;
-        this.mostrar();
+        this.#tiempo = milisegundosSegmento;
+        this.#mostrar();
     }
 
-    mostrar() {
-        const totalMilisegundos = this.tiempo;
+    #mostrar() {
+        const totalMilisegundos = this.#tiempo;
         const totalSegundos = parseInt(totalMilisegundos / 1000, 10);
         const totalMinutos = parseInt(totalSegundos / 60, 10);
 
@@ -72,16 +89,14 @@ class Cronometro {
     }
 
     parar() {
-        clearInterval(this.corriendo);
-        this.corriendo = null;
-        this.tiempoAcumulado=this.tiempo;
+        clearInterval(this.#corriendo);
+        this.#corriendo = null;
     }
 
     reiniciar() {
         this.parar();
         
-        this.tiempo = 0;
-        this.tiempoAcumulado=0;
-        this.mostrar();
+        this.#tiempo = 0;
+        this.#mostrar();
     }
 }

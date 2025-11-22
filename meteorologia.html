@@ -2,7 +2,6 @@
 
 <html lang="es">
 <head>
-    <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <title>MotoGP-Meteorología</title>
     <meta name = 'author' content = 'Sergio Gonzalez Martinez'  />
@@ -13,11 +12,11 @@
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="icon" href="multimedia/favicon.ico" type="image/x-icon" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/ciudad.js"></script>
 </head>
 
 <body>
-    <!-- Datos con el contenidos que aparece en el navegador -->
      <header>
      <h1><a href="index.html">MotoGP Desktop</a></h1>
     <nav>
@@ -33,21 +32,27 @@
     <p class="breadcrumbs">Estás en: <a href="index.html">Inicio</a> -> <strong>Meteorología</strong></p>
     <h2>Meteorología de MotoGP-Desktop</h2>
 
+
+    <main>
+        </main>
+
+
     <script>
-        let ciudadBarcelona = new Ciudad('Barcelona','España','barcelonés/barcelonesa')
+        let ciudadBarcelona = new Ciudad('Barcelona', 'España', 'barcelonés/barcelonesa');
+        ciudadBarcelona.rellenarAtributosSecundarios(1702547, 41.389558, 2.168194);
 
-        ciudadBarcelona.rellenarAtributosSecundarios(1702547,41.389558, 2.168194)
-        document.write('<section class="info-meteorologia">');
-        document.write('<h3>Información de la Sede del Circuito</h3>');
+        const $main = $("main");
 
-        document.write('<p>Ciudad: ' + ciudadBarcelona.getNombreCiudad() + '</p>');
-        document.write('<p>País: ' + ciudadBarcelona.getNombrePais() + '</p>');
+        $main.append('<h3>Información de la Sede del Circuito</h3>');
+        $main.append('<p>Ciudad: ' + ciudadBarcelona.getNombreCiudad() + '</p>');
+        $main.append('<p>País: ' + ciudadBarcelona.getNombrePais() + '</p>');
 
-        document.write(ciudadBarcelona.getInformacionSecundariaHTML());
+        $main.append(ciudadBarcelona.getInformacionSecundariaHTML());
+        $main.append(ciudadBarcelona.getCoordenadasHTML());
 
-        ciudadBarcelona.escribirCoordenadasEnHTML();
-        
-        document.write('</section>');
+        ciudadBarcelona.getMeteorologiaCarrera();
+        ciudadBarcelona.getMeteorologiaEntrenos();
     </script>
+
 </body>
 </html>
