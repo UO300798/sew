@@ -36,7 +36,7 @@ class Circuito {
             this.leerArchivoHTML(evento.target.files);
         });
 
-        label.appendChild(input); // El label envuelve al input
+        label.appendChild(input);
         
         const main = document.querySelector('main');
         if (main) {
@@ -47,6 +47,44 @@ class Circuito {
             document.body.appendChild(label);
         }
     }
+
+    /**
+     * 
+     * inicializarInterfaz() {
+    // Crear título
+    const h3 = document.createElement('h3');
+    h3.textContent = 'Carga de Archivo InfoCircuito.html';
+
+    // Crear texto descriptivo
+    const texto = document.createElement('p');
+    texto.textContent = 'Seleccionar archivo HTML:';
+
+    // Crear input tipo file
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.html';
+
+    // Evento al seleccionar archivo
+    input.addEventListener('change', (evento) => {
+        this.leerArchivoHTML(evento.target.files);
+    });
+
+    // Insertar en <main> si existe, sino en <body>
+    const main = document.querySelector('main');
+    if (main) {
+        main.appendChild(h3);
+        main.appendChild(texto);
+        main.appendChild(input);
+    } else {
+        document.body.appendChild(h3);
+        document.body.appendChild(texto);
+        document.body.appendChild(input);
+    }
+}
+
+     */
+
+    
 
     leerArchivoHTML(files) {
         if (!files || files.length === 0) return;
@@ -117,8 +155,8 @@ class CargadorSVG {
     }
 
     inicializarInterfaz() {
-        const h3 = document.createElement('h3');
-        h3.textContent = 'Carga de Archivo SVG';
+        //const h3 = document.createElement('h3');
+        //h3.textContent = 'Carga de Archivo SVG';
 
         const label = document.createElement('label');
         label.textContent = 'Seleccionar archivo SVG: ';
@@ -133,8 +171,8 @@ class CargadorSVG {
 
         label.appendChild(input); // El label envuelve al input
         
-        this.contenedor.parentNode.insertBefore(h3, this.contenedor);
         this.contenedor.parentNode.insertBefore(label, this.contenedor);
+
     }
 
     leerArchivoSVG(evento) {
@@ -153,8 +191,19 @@ class CargadorSVG {
         const parser = new DOMParser();
         const documentoSVG = parser.parseFromString(contenidoTexto, 'image/svg+xml');
         const elementoSVG = documentoSVG.documentElement;
-        
+
+        if (elementoSVG.hasAttribute('version')) {
+            elementoSVG.setAttribute('version', '1.1');
+        }
+
+        const encabezadoExistente = this.contenedor.querySelector('h4');
+    
+        // Limpiar el contenido del article
         this.contenedor.innerHTML = '';
+        
+        if (encabezadoExistente) {
+            this.contenedor.appendChild(encabezadoExistente);
+    }
         this.contenedor.appendChild(elementoSVG);  
     }
 }
@@ -164,7 +213,8 @@ class CargadorKML {
 
     constructor() {
         this.accessToken = "pk.eyJ1IjoidW8zMDA3OTgiLCJhIjoiY21pYW5jc3JiMGI4ajJrczZ0bm9pOGFjaiJ9.CN1I8R62F90z5pDjEfY2BQ"; 
-        this.contenedor = document.getElementById('mapa');
+        
+        this.contenedor = document.querySelector('div');
         
         if (this.contenedor) {
             this.inicializarInterfaz();
@@ -186,7 +236,7 @@ class CargadorKML {
             this.leerArchivoKML(evento);
         });
 
-        label.appendChild(input); // El label envuelve al input
+        label.appendChild(input);
         
         this.contenedor.parentNode.insertBefore(h3, this.contenedor);
         this.contenedor.parentNode.insertBefore(label, this.contenedor);
@@ -207,7 +257,6 @@ class CargadorKML {
         const xmlDoc = parser.parseFromString(xmlString, "text/xml");
 
         const coordNode = xmlDoc.querySelector("coordinates");
-        if (!coordNode) return;
 
         const coordenadasRaw = coordNode.textContent.trim();
         const puntos = [];
@@ -216,9 +265,8 @@ class CargadorKML {
         
         lineas.forEach(linea => {
             const coords = linea.split(',');
-            if (coords.length >= 2) {
-                puntos.push([parseFloat(coords[0]), parseFloat(coords[1])]);
-            }
+            puntos.push([parseFloat(coords[0]), parseFloat(coords[1])]);
+
         });
         this.insertarCapaKML(puntos);
     }
@@ -228,7 +276,6 @@ class CargadorKML {
         
         const mapa = new mapboxgl.Map({
             container: this.contenedor,
-            style: 'mapbox://styles/mapbox/streets-v11',
             center: puntos[0],
             zoom: 14
         });

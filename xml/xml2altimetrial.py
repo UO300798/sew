@@ -14,30 +14,26 @@ class Svg(object):
         )
 
     def addLine(self, x1, y1, x2, y2, stroke, strokeWidth):
-        ET.SubElement(self.raiz,'line',
-            x1=x1,
-            y1=y1,
-            x2=x2,
-            y2=y2,
-            stroke=stroke,
-            strokeWidth=strokeWidth
-        )
+        ET.SubElement(self.raiz, 'line',
+                      x1=x1, y1=y1, x2=x2, y2=y2,
+                      stroke=stroke,
+                      **{'stroke-width': strokeWidth}) # Corregido: stroke-width
 
     def addPolyline(self, points, stroke, strokeWidth, fill):
-        ET.SubElement(self.raiz,'polyline',
-            points=points,
-            stroke=stroke,
-            strokeWidth=strokeWidth,
-            fill=fill
-        )
+        ET.SubElement(self.raiz, 'polyline',
+                      points=points, stroke=stroke, fill=fill,
+                      **{'stroke-width': strokeWidth})
 
     def addText(self, texto, x, y, fontFamily, fontSize, style):
-        ET.SubElement(self.raiz,'text',
-            x=x,
-            y=y,
-            fontFamily=fontFamily,
-            fontSize=fontSize,
-            style=style).text = texto
+        attribs = {
+            'x': str(x),
+            'y': str(y),
+            'font-family': fontFamily,
+            'font-size': fontSize,
+            'style': style
+        }
+        elem = ET.SubElement(self.raiz, 'text', **attribs)
+        elem.text = texto
 
     def escribir(self, nombreArchivoSVG):
         arbol = ET.ElementTree(self.raiz)

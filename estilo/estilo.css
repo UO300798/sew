@@ -140,3 +140,9 @@ dl dd:hover {
     background-color: #000c66;   
     color: #ffffff;              
 }
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
