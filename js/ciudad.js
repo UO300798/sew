@@ -63,7 +63,7 @@ class Ciudad {
         const paramsHorarios = "temperature_2m,apparent_temperature,rain,relative_humidity_2m,wind_speed_10m,wind_direction_10m";
         const paramsDiarios = "sunrise,sunset";
 
-        $.ajax({
+        return $.ajax({
             dataType: 'json',
             url: openMeteoURL,
             method: 'GET',
@@ -129,7 +129,7 @@ class Ciudad {
     
     const paramsHorarios = "temperature_2m,rain,wind_speed_10m,relative_humidity_2m";
 
-    $.ajax({
+    return $.ajax({
         dataType: 'json',
         url: openMeteoURL,
         method: 'GET',

@@ -1,4 +1,4 @@
-CREATE DATABASE UO300798_DB;
+CREATE DATABASE UO300798_DB COLLATE utf8_spanish_ci;
 
 CREATE TABLE `generos` (
   `id_genero` INT AUTO_INCREMENT PRIMARY KEY,
@@ -32,6 +32,16 @@ CREATE TABLE `resultados` (
   `id_dispositivo` INT NOT NULL,               
   `tiempo` INT NOT NULL,
   `completado` BOOLEAN NOT NULL,
+  `respuesta1` TEXT,
+  `respuesta2` TEXT,
+  `respuesta3` TEXT,
+  `respuesta4` TEXT,
+  `respuesta5` TEXT,
+  `respuesta6` TEXT,
+  `respuesta7` TEXT,
+  `respuesta8` TEXT,
+  `respuesta9` TEXT,
+  `respuesta10` TEXT,
   `comentarios` TEXT,
   `propuestas_mejora` TEXT,
   `valoracion` TINYINT NOT NULL CHECK (`valoracion` BETWEEN 0 AND 10),

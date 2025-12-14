@@ -36,8 +36,8 @@
                 $tiempoGanador = $tiempoGanadorISO; 
             }
 
-            echo "<p>Nombre: <strong>$nombreGanador</strong></p>";
-            echo "<p>Tiempo: <strong>$tiempoGanador</strong></p>";
+            echo "<p>Nombre: $nombreGanador</p>";
+            echo "<p>Tiempo: $tiempoGanador</p>";
 
             echo "<h3>Clasificación del mundial tras la carrera</h3>";
             echo "<ol>";
@@ -89,8 +89,6 @@
 
     <main>
         <h2>Clasificaciones de MotoGP-Desktop</h2>
-
-        <p>en desarrollo</p>
 
         <?php 
             $clasificacion->consultar(); 

@@ -50,8 +50,8 @@
         $main.append(ciudadBarcelona.getInformacionSecundariaHTML());
         $main.append(ciudadBarcelona.getCoordenadasHTML());
 
-        ciudadBarcelona.getMeteorologiaCarrera();
-        ciudadBarcelona.getMeteorologiaEntrenos();
+        ciudadBarcelona.getMeteorologiaCarrera()
+            .done(() => ciudadBarcelona.getMeteorologiaEntrenos());
     </script>
 
 </body>

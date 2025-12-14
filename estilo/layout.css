@@ -1,47 +1,57 @@
+/* especificidad: 0,0,1 */
 header {
     display: flex;
     padding: 1rem;
     justify-content: space-between;
 }
 
+/* especificidad: 0,0,2 */
 header nav {
     display:flex;
     gap:1rem;
     flex-wrap:wrap;
 }
 
-body > div#mapa {
+/* especificidad: 0,0,2 */
+body > div {
     width: 90%;
     height: 70vh;  
     margin: 2em;
 }
 
 @media (min-width: 320px) and (max-width: 799px) {
+    /* especificidad: 0,0,1 */
     header {
         flex-direction: column;
         align-items: flex-start;
     }
 
+    /* especificidad: 0,0,2 */
     header nav {
         flex-direction: column;
         gap: 0.5rem;
+        /* Validación CSS: Redefinición de gap para diseño adaptable */
     }
 
+    /* especificidad: 0,1,1 */
     p.breadcrumbs {
         display: none;
     }
 
+    /* especificidad: 0,0,1 */
     video {
         width: 100%;
         height: auto;
         margin-bottom: 1rem; 
     }
 
+    /* especificidad: 0,0,1 */
     audio {
         width: 100%; 
         margin-top: 0.5rem;
     }
 
+   /* especificidad: 0,0,1 */
    table {
         width: 100%;
         font-size: 0.8rem; 
@@ -51,28 +61,36 @@ body > div#mapa {
         overflow-x: hidden; 
     }
 
+    /* especificidad: 0,0,2 */
     table th, table td {
         padding: 0.3rem 0.3rem;
     }
 
+    /* especificidad: 0,0,2 */
     table caption {
         text-align: left;
         margin-left: 0.5rem;
         font-size: 1rem;
     }
 
+    /* especificidad: 0,0,3 */
     article h2 + img {
         width: 100%;   
         height: auto;  
     }
 
-    body > div#mapa {
+    /* especificidad: 0,0,2 */
+    body > div {
         width: 100%;
+        /* Validación CSS: Redefinición de width para diseño adaptable */
         height: 60vh;
+        /* Validación CSS: Redefinición de height para diseño adaptable */
         margin: 1em 0;
+        /* Validación CSS: Redefinición de margin para diseño adaptable */
         border: 2px solid #333;
     }
 
+    /*
     main img {
         max-width: 100%;
         height: auto;
@@ -90,6 +108,7 @@ body > div#mapa {
         height: auto;
         display: block;
     }
+        */
 
     
 }

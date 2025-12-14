@@ -107,14 +107,25 @@ class Configuracion {
             id_dispositivo INT NOT NULL,
             tiempo INT NOT NULL,
             completado BOOLEAN NOT NULL,
+            respuesta1 TEXT,
+            respuesta2 TEXT,
+            respuesta3 TEXT,
+            respuesta4 TEXT,
+            respuesta5 TEXT,
+            respuesta6 TEXT,
+            respuesta7 TEXT,
+            respuesta8 TEXT,
+            respuesta9 TEXT,
+            respuesta10 TEXT,
             comentarios TEXT,
             propuestas_mejora TEXT,
             valoracion TINYINT NOT NULL CHECK (valoracion BETWEEN 0 AND 10),
             FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
             FOREIGN KEY (id_dispositivo) REFERENCES dispositivos(id_dispositivo)
         )";
+        
         if($this->db->query($crearResultados) === TRUE) {
-            echo "<p>Tabla 'resultados' creada con éxito</p>";
+            echo "<p>Tabla 'resultados' creada con éxito (Estructura de 10 respuestas)</p>";
         } else {
             echo "<p>ERROR en la creación de la tabla 'resultados'. Error: " . $this->db->error . "</p>";
         }
@@ -138,7 +149,15 @@ class Configuracion {
     public function reiniciarBaseDatos() {
         echo "<section><h2>Reiniciar Base de Datos</h2>";
 
-        $this->conectarBaseDatos();
+        $this->db = @new mysqli($this->servername, $this->username, $this->password, $this->database);
+
+        if ($this->db->connect_error) {
+            echo "<p>La base de datos no existe. Creándola automáticamente...</p>";
+            echo "</section>";
+            $this->crearBaseDatos();
+            return;
+        }
+
         $this->db->query("SET FOREIGN_KEY_CHECKS = 0");
 
         $this->db->query("TRUNCATE TABLE observaciones");
@@ -179,98 +198,104 @@ class Configuracion {
     }
 
     public function exportarDatos() {
+        echo "<section><h2>Exportar Datos</h2>";
         $this->conectarBaseDatos();
-
-        $tablas = [
-            'usuarios' => ['ID', 'Profesion', 'Edad', 'Genero', 'Pericia'],
-            'resultados' => ['ID', 'Usuario', 'Dispositivo', 'Tiempo', 'Completado', 'Comentarios', 'Mejoras', 'Valoracion'],
-            'observaciones' => ['ID', 'Usuario', 'Comentarios Facilitador']
-        ];
 
         $nombreArchivo = "exportacion_" . date('Y-m-d_H-i-s') . ".csv";
 
-        header('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename="' . $nombreArchivo . '"');
+        $salida = fopen($nombreArchivo, 'w');
+        fprintf($salida, chr(0xEF).chr(0xBB).chr(0xBF));
 
-        $salida = fopen('php://output', 'w');
-        
-        foreach ($tablas as $tabla => $encabezados) {
-            fwrite($salida, "--- TABLA " . strtoupper($tabla) . " ---\n");
-            fwrite($salida, implode(';', $encabezados) . "\n");
+        $encabezados = [
+            'id_resultado', 'id_usuario', 'edad', 'id_genero', 'genero', 'pericia', 'profesion', 
+            'id_dispositivo', 'dispositivo', 
+            'tiempo', 'completado', 
+            'respuesta1', 'respuesta2', 'respuesta3', 'respuesta4', 'respuesta5', 
+            'respuesta6', 'respuesta7', 'respuesta8', 'respuesta9', 'respuesta10', 
+            'valoracion', 'comentarios_usuario', 'propuestas_mejora', 
+            'id_observacion', 'comentarios_observador'
+        ];
+        fputcsv($salida, $encabezados, ";");
 
-            $resultado = $this->db->query("SELECT * FROM $tabla");
-            if ($resultado && $resultado->num_rows > 0) {
-                while ($fila = $resultado->fetch_assoc()) {
-                    $filaCSV = [];
-                    switch ($tabla) {
-                        case 'usuarios':
-                            $filaCSV[] = $fila['id_usuario'];
-                            $filaCSV[] = $fila['profesion'];
-                            $filaCSV[] = $fila['edad'];
-                            $filaCSV[] = $fila['id_genero'];
-                            $filaCSV[] = $fila['pericia_informatica'];
-                            break;
-                        case 'resultados':
-                            $filaCSV[] = $fila['id_resultado'];
-                            $filaCSV[] = $fila['id_usuario'];
-                            $filaCSV[] = $fila['id_dispositivo'];
-                            $filaCSV[] = $fila['tiempo'];
-                            $filaCSV[] = $fila['completado'];
-                            $filaCSV[] = str_replace(["\r\n", "\n", "\r", ';'], ' ', $fila['comentarios']);
-                            $filaCSV[] = str_replace(["\r\n", "\n", "\r", ';'], ' ', $fila['propuestas_mejora']);
-                            $filaCSV[] = $fila['valoracion'];
-                            break;
-                        case 'observaciones':
-                            $filaCSV[] = $fila['id_observacion'];
-                            $filaCSV[] = $fila['id_usuario'];
-                            $filaCSV[] = str_replace(["\r\n", "\n", "\r", ';'], ' ', $fila['comentarios']);
-                            break;
-                    }
-                    fwrite($salida, implode(';', $filaCSV) . "\n");
-                }
+        $sql = "SELECT 
+                    r.id_resultado, r.id_usuario, u.edad, u.id_genero, g.descripcion as genero, 
+                    u.pericia_informatica, u.profesion,
+                    r.id_dispositivo, d.descripcion as dispositivo,
+                    r.tiempo, r.completado,
+                    r.respuesta1, r.respuesta2, r.respuesta3, r.respuesta4, r.respuesta5,
+                    r.respuesta6, r.respuesta7, r.respuesta8, r.respuesta9, r.respuesta10,
+                    r.valoracion, r.comentarios as comentarios_usuario, r.propuestas_mejora,
+                    o.id_observacion, o.comentarios as comentarios_observador
+                FROM resultados r
+                JOIN usuarios u ON r.id_usuario = u.id_usuario
+                JOIN generos g ON u.id_genero = g.id_genero
+                JOIN dispositivos d ON r.id_dispositivo = d.id_dispositivo
+                LEFT JOIN observaciones o ON u.id_usuario = o.id_usuario";
+
+        $resultado = $this->db->query($sql);
+
+        if ($resultado && $resultado->num_rows > 0) {
+            while ($fila = $resultado->fetch_assoc()) {
+                $fila['completado'] = ($fila['completado'] == 1) ? "Completado" : "No completado";
+
+                $filaLimpia = array_map(function($dato) {
+                    return str_replace(["\r\n", "\n", "\r"], " ", (string)$dato);
+                }, $fila);
+                
+                fputcsv($salida, $filaLimpia, ";");
             }
-            fwrite($salida, "\n");
         }
 
         fclose($salida);
+        echo "<p>Datos exportados correctamente al archivo: " . $nombreArchivo . "</p>";
         $this->cerrarConexion();
-        exit();
+        echo "</section>";
     }
 }
 
 $config = new Configuracion();
 
-if(isset($_POST['crear'])) {
-    $config->crearBaseDatos();
-} elseif(isset($_POST['reiniciar'])) {
-    $config->reiniciarBaseDatos();
-} elseif(isset($_POST['eliminar'])) {
-    $config->eliminarBaseDatos();
-} elseif(isset($_POST['exportar'])) {
-    $config->exportarDatos();
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8" />
     <title>Configuración Base de Datos - Pruebas de Usabilidad MotoGP</title>
-    <meta charset="utf-8"/>
-    <meta name="author" content="UO300798" /> 
-    <link href="estilo/estilo.css" rel="stylesheet" />
+    <meta name="author" content="Sergio Gonzalez Martinez" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="../estilo/layout.css" />
+    <link rel="icon" href="../multimedia/favicon.ico" type="image/x-icon" />
 </head>   
 <body>
-    <h1>Configuración - Pruebas de Usabilidad MotoGP</h1>
+    <header>
+        <h1>Configuración - Pruebas de Usabilidad MotoGP</h1>
+    </header>
     
-    <section>
-        <h2>Operaciones de Configuración</h2>
-        <form method="post" action="configuracion.php">
-            <button type="submit" name="crear">Crear Base de Datos</button>
-            <button type="submit" name="reiniciar">Reiniciar Base de Datos</button>
-            <button type="submit" name="eliminar">Eliminar base datos, sus tablas y los datos asociados</button>
-            <button type="submit" name="exportar">Exportar Datos en formato .csv</button>
-        </form>
-    </section>
+    <main>
+        <section>
+            <h2>Operaciones de Configuración</h2>
+            <form method="post" action="configuracion.php">
+                <button type="submit" name="crear">Crear Base de Datos</button>
+                <button type="submit" name="reiniciar">Reiniciar Base de Datos</button>
+                <button type="submit" name="eliminar">Eliminar base datos, sus tablas y los datos asociados</button>
+                <button type="submit" name="exportar">Exportar Datos en formato .csv</button>
+            </form>
+        </section>
+
+        <?php
+        if(isset($_POST['crear'])) {
+            $config->crearBaseDatos();
+        } elseif(isset($_POST['reiniciar'])) {
+            $config->reiniciarBaseDatos();
+        } elseif(isset($_POST['eliminar'])) {
+            $config->eliminarBaseDatos();
+        } elseif(isset($_POST['exportar'])) {
+            $config->exportarDatos();
+        }
+        ?>
+    </main>
     
 </body>
 </html>

@@ -91,7 +91,6 @@ class Memoria {
         }
 
         if (todasReveladas) {
-            console.log("¡Felicidades! Has completado el juego.");
             this.#cronometro.parar();
         }
     }

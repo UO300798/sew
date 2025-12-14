@@ -54,23 +54,39 @@ if (isset($_POST['iniciar_prueba'])) {
     $idUsuario = $db->insert_id;
     $stmt->close();
 
-    $respuestasTexto = "R1: " . $_SESSION['respuestas']['p1'] . " | R2: " . $_SESSION['respuestas']['p2'] . 
-                       " | R3: " . $_SESSION['respuestas']['p3'] . " | R4: " . $_SESSION['respuestas']['p4'] .
-                       " | R5: " . $_SESSION['respuestas']['p5'] . " | R6: " . $_SESSION['respuestas']['p6'] .
-                       " | R7: " . $_SESSION['respuestas']['p7'] . " | R8: " . $_SESSION['respuestas']['p8'] .
-                       " | R9: " . $_SESSION['respuestas']['p9'] . " | Val: " . $_SESSION['respuestas']['valoracion'];
-    
-    $tiempoEntero = (int)$_SESSION['tiempo_final']; 
-    
-    $sqlResult = "INSERT INTO resultados (id_usuario, id_dispositivo, tiempo, completado, comentarios, propuestas_mejora, valoracion) 
-                  VALUES (?, ?, ?, 1, ?, ?, ?)";
-    
-    $propuestas = $_SESSION['respuestas']['propuestas'];
-    $valoracion = $_SESSION['respuestas']['valoracion'];
+    $r = $_SESSION['respuestas']; 
+    $tiempoEntero = (int)$_SESSION['tiempo_final'];
     $idDispositivo = $datosUser['dispositivo'];
+    
+    $completado = 1;
+    for ($i = 1; $i <= 10; $i++) {
+        $key = 'p' . $i;
+        if (isset($r[$key]) && $r[$key] === '999') {
+            $completado = 0;
+            $r[$key] = 'No respondio';
+        }
+    }
 
+    $sqlResult = "INSERT INTO resultados (
+                    id_usuario, id_dispositivo, tiempo, completado, 
+                    respuesta1, respuesta2, respuesta3, respuesta4, respuesta5, 
+                    respuesta6, respuesta7, respuesta8, respuesta9, respuesta10, 
+                    comentarios, propuestas_mejora, valoracion
+                  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
     $stmt2 = $db->prepare($sqlResult);
-    $stmt2->bind_param("iiissi", $idUsuario, $idDispositivo, $tiempoEntero, $respuestasTexto, $propuestas, $valoracion);
+    
+    $stmt2->bind_param("iiiissssssssssssi", 
+        $idUsuario, 
+        $idDispositivo, 
+        $tiempoEntero, 
+        $completado,
+        $r['p1'], $r['p2'], $r['p3'], $r['p4'], $r['p5'], 
+        $r['p6'], $r['p7'], $r['p8'], $r['p9'], $r['p10'],
+        $r['comentarios_usuario'], 
+        $r['propuestas_mejora'], 
+        $r['valoracion']
+    );
     $stmt2->execute();
     $stmt2->close();
 
@@ -111,12 +127,12 @@ if (isset($_POST['iniciar_prueba'])) {
         <?php if ($step == 1): ?>
             <section>
                 <h2>Datos del Participante</h2>
-                <form method="post" action="">
+                <form method="post" action="pruebas_usabilidad.php">
                     
                     <h3>Perfil de Usuario</h3>
                     
                     <p>Edad:</p>
-                    <p><input type="number" name="edad" required min="10" max="99"></p>
+                    <p><input type="number" name="edad" required min="0" max="99"></p>
 
                     <p>Profesión:</p>
                     <p><input type="text" name="profesion" required></p>
@@ -124,6 +140,7 @@ if (isset($_POST['iniciar_prueba'])) {
                     <p>Género:</p>
                     <p>
                         <select name="genero" required>
+                            <option value="" selected disabled>Seleccione una opción</option>
                             <option value="1">Hombre</option>
                             <option value="2">Mujer</option>
                             <option value="3">Otro</option>
@@ -138,6 +155,7 @@ if (isset($_POST['iniciar_prueba'])) {
                     <p>Dispositivo utilizado:</p>
                     <p>
                         <select name="dispositivo" required>
+                            <option value="" selected disabled>Seleccione una opción</option>
                             <option value="1">Ordenador</option>
                             <option value="2">Tableta</option>
                             <option value="3">Teléfono</option>
@@ -153,13 +171,13 @@ if (isset($_POST['iniciar_prueba'])) {
                 <h2>Cuestionario de Evaluación</h2>
                 <p>Por favor, navegue por el sitio web MotoGP-Desktop en la otra pestaña y responda las siguientes preguntas.</p>
                 
-                <form method="post" action="">
+                <form method="post" action="pruebas_usabilidad.php">
                     
                     <p>1. ¿En qué país nació Brad Binder?</p>
                     <p><input type="text" name="p1" required></p>
 
                     <p>2. ¿Cuantas secciones principales aparecen en el menú de navegación?</p>
-                    <p><input type="text" name="p2" required></p>
+                    <p><input type="number" name="p2" required></p>
 
                     <p>3. ¿En qué año nació Brad Binder?</p>
                     <p><input type="number" name="p3" required></p>
@@ -188,8 +206,11 @@ if (isset($_POST['iniciar_prueba'])) {
                     <p>11. Valoración global de la web (0-10):</p>
                     <p><input type="number" name="valoracion" min="0" max="10" required></p>
 
-                    <p>Propuestas de mejora (Opcional):</p>
-                    <p><textarea name="propuestas" rows="3"></textarea></p>
+                    <p>Comentarios generales sobre la prueba: (Opcional)</p>
+                    <textarea name="comentarios_usuario"></textarea>
+
+                    <p>Propuestas de mejora para la aplicación: (Opcional)</p>
+                    <textarea name="propuestas_mejora"></textarea>
 
                     <button type="submit" name="terminar_prueba">Terminar Prueba</button>
                 </form>
@@ -201,7 +222,7 @@ if (isset($_POST['iniciar_prueba'])) {
                 <p><strong>¡Prueba finalizada por el usuario!</strong></p>
                 <p>El tiempo ha sido registrado internamente. Ahora, como observador, introduzca sus notas sobre la sesión.</p>
                 
-                <form method="post" action="">
+                <form method="post" action="pruebas_usabilidad.php">
                     <p>Comentarios / Incidencias detectadas durante la prueba:</p>
                     <p><textarea name="comentarios_observador" rows="6" required></textarea></p>
                     

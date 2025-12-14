@@ -95,7 +95,6 @@ class Cronometro {
 
     reiniciar() {
         this.parar();
-        
         this.#tiempo = 0;
         this.#mostrar();
     }

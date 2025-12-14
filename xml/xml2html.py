@@ -12,11 +12,7 @@ class Html:
 
     def addTitulo(self, texto, nivel=1):
         nivel = min(max(nivel, 1), 6)
-        if nivel == 1:
-            header = ET.SubElement(self.body, 'header')
-            h = ET.SubElement(header, 'h' + str(nivel))
-        else:
-            h = ET.SubElement(self.body, 'h' + str(nivel))
+        h = ET.SubElement(self.body, 'h' + str(nivel))
         h.text = texto
 
     def addParrafo(self, texto):
@@ -128,6 +124,7 @@ def main():
 
     html = Html(titulo=f"Info Circuito - {datos.get('nombre','')}")
 
+    html.addTitulo(datos.get('nombre',''), nivel=1)
     html.addParrafo(f"Nombre: {datos.get('nombre','')}")
     html.addParrafo(f"Distancia: {datos.get('distancia','')}")
     html.addParrafo(f"Anchura: {datos.get('anchura','')}")
@@ -140,23 +137,23 @@ def main():
     html.addParrafo(f"Patrocinador: {datos.get('patrocinador','')}")
 
     if referencias:
-        html.addTitulo("Referencias", nivel=2)
+        html.addTitulo("Referencias", nivel=3)
         html.addListaLinks(referencias)
 
     if fotos:
-        html.addTitulo("Galería de fotos", nivel=2)
+        html.addTitulo("Galería de fotos", nivel=3)
         for foto in fotos:
             html.addImagen(f"../{foto}")
 
     if videos:
-        html.addTitulo("Videos", nivel=2)
+        html.addTitulo("Videos", nivel=3)
         for nombre, descripcion in videos:
             html.addVideo(f"../{nombre}", descripcion)
 
-    html.addTitulo("Resultados", nivel=2)
+    html.addTitulo("Resultados", nivel=3)
     html.addParrafo(f"Vencedor: {ganador} (Tiempo: {tiempo_ganador} )")
     if clasificacion:
-        html.addTitulo("Clasificación Mundial", nivel=3)
+        html.addTitulo("Clasificación Mundial", nivel=4)
         html.addLista(clasificacion, tipo='ol')
 
     html.escribir(archivoHTML)

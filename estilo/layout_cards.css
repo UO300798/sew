@@ -1,3 +1,4 @@
+/* especificidad: 0,0,1 */
 main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6,7 +7,7 @@ main {
     justify-items: center; 
 }
 
-
+/* especificidad: 0,0,2 */
 main h2,
 main p {
     grid-column: 1 / -1;
@@ -15,21 +16,27 @@ main p {
     padding: 0.5em 0;
 }
 
-
+/* especificidad: 0,0,2 */
 main h2 {
     text-align: center;
 }
+
+/* especificidad: 0,0,2 */
 main p {
     text-align: center;
     font-size: 1em;
     font-weight: bold;
     color: #000000;
+    /* Validación CSS: falta background-color, se hereda */
 }
 
 @media (min-width: 320px) and (max-width: 799px) {
 
+    /* especificidad: 0,0,1 */
     main {
         grid-template-columns: repeat(2, 1fr);
+        /* Validación CSS: Redefinición de grid-template-columns para diseño adaptable */
         gap: 1em; 
+        /* Validación CSS: Redefinición de gap para diseño adaptable */
     }
 }
