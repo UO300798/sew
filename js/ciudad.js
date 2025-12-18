@@ -25,18 +25,18 @@ class Ciudad {
     }
 
     getNombreCiudad() {
-        return this.#nombre;
+        $('main').append("<p>Ciudad: " + this.#nombre + "</p>");
     }
 
     getNombrePais() {
-        return this.#pais;
+        $('main').append("<p>País: " + this.#pais + "</p>");
     }
 
     getInformacionSecundariaHTML() {            
-         return "<ul>" +
+         $('main').append("<ul>" +
                "<li>Gentilicio: " + this.#gentilicio + "</li>" +
                "<li>Población: " +  this.#poblacion + " habitantes</li>" +
-               "</ul>";
+               "</ul>");
     }
 
     getCoordenadasHTML() {
@@ -52,7 +52,7 @@ class Ciudad {
             
         `;
         
-        return htmlContent;
+        $('main').append(htmlContent);
     }
 
     getMeteorologiaCarrera() {
@@ -63,7 +63,7 @@ class Ciudad {
         const paramsHorarios = "temperature_2m,apparent_temperature,rain,relative_humidity_2m,wind_speed_10m,wind_direction_10m";
         const paramsDiarios = "sunrise,sunset";
 
-        return $.ajax({
+        $.ajax({
             dataType: 'json',
             url: openMeteoURL,
             method: 'GET',
@@ -79,7 +79,7 @@ class Ciudad {
             success: (data) => {
                 this.#meteo = data;
                 this.#procesarJSONCarrera();
-
+                this.getMeteorologiaEntrenos();
             }
         });
     }
@@ -129,7 +129,7 @@ class Ciudad {
     
     const paramsHorarios = "temperature_2m,rain,wind_speed_10m,relative_humidity_2m";
 
-    return $.ajax({
+    $.ajax({
         dataType: 'json',
         url: openMeteoURL,
         method: 'GET',
@@ -216,4 +216,21 @@ class Ciudad {
 }
 
 
-}  
+}
+
+
+    let ciudadBarcelona = new Ciudad('Barcelona', 'España', 'barcelonés/barcelonesa');
+    ciudadBarcelona.rellenarAtributosSecundarios(1702547, 41.389558, 2.168194);
+
+    $("body").append("<main></main>");
+    const $main = $("main");
+
+    $main.append('<h3>Información de la Sede del Circuito</h3>');
+    ciudadBarcelona.getNombreCiudad();
+    ciudadBarcelona.getNombrePais();
+
+    ciudadBarcelona.getInformacionSecundariaHTML();
+    ciudadBarcelona.getCoordenadasHTML();
+
+    ciudadBarcelona.getMeteorologiaCarrera();
+

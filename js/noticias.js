@@ -72,3 +72,6 @@ class Noticias {
     }
 
 }
+
+    var misNoticias = new Noticias();
+    misNoticias.buscar();

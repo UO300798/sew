@@ -9,35 +9,23 @@ body {
 }
 
 /*especificidad 0,0,1 */
+/* Validación CSS: falta color, se hereda de body */
 header {
     background-color: #050a30;   
-    /* Validación CSS: falta color, se hereda */
-}
-
-/*especificidad 0,0,1 */
-h1 {
-    color: #000c66;             
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,0,2 */
+/* Validación CSS: falta background-color, se hereda de header */
 header h1 {
     color: #ffffff;
-    /* Validación CSS: falta background-color, se hereda */
-}
-
-/*especificidad 0,0,1 */
-nav {
-    color: #000c66;             
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,1,2 */
+/* Validación CSS: falta background-color, se hereda de nav */
 nav a.active {
     color: #ffffff;              
     text-decoration: underline;  
     font-size: 2rem;
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,0,3 */
@@ -47,48 +35,38 @@ p > a + strong {
 }
 
 /*especificidad 0,0,2 */
+/* Validación CSS: falta background-color, se hereda de header */
 header a {
     text-decoration-line: none;  
     color: #ffffff;
     font-size: 2rem;
-    /* Validación CSS: falta background-color, se hereda */
 }
-
-
-/*especificidad 0,0,3 */
-/*
-header nav a {
-    text-decoration-line: none;  
-    color: #ffffff;
-    font-size: 2rem;
-}
-*/
 
 /*especificidad 0,1,1 */
+/* Validación CSS: falta background-color, se hereda del contenedor padre */
 a[href^="http"] {
     color: #0000ff;              
     text-decoration: none;
     font-weight: bold;
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,2,1 */
+/* Validación CSS: falta background-color, se hereda de a[href^="http"] */
 a[href^="http"]:visited {
     color: #000c66;              
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,2,1 */
+/* Validación CSS: falta background-color, se hereda de a[href^="http"] */
 a[href^="http"]:hover {
     color: #050a30;              
     text-decoration: underline;
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,2,1 */
+/* Validación CSS: falta background-color, se hereda de a[href^="http"] */
 a[href^="http"]:active {
     color: #0000ff;              
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,0,1 */
@@ -101,12 +79,12 @@ table {
 }
 
 /*especificidad 0,0,2 */
+/* Validación CSS: falta background-color, se hereda de table */
 table caption {
     font-weight: bold;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: #0000ff;              
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,0,2 */
@@ -122,59 +100,48 @@ table th {
 }
 
 /*especificidad 0,0,1 */
+/* Validación CSS: falta color, se hereda de body */
 dl {
     background-color: #7ec8e3;   
-    padding: 1rem;
+    padding: 0;
     border-radius: 8px;
-    width: 90%;
-    margin: 1rem auto;
+    width: 100%;
+    margin: 1rem 0;
     font-family: Tahoma, Arial, Verdana, sans-serif;
-    /* Validación CSS: falta color, se hereda */
 }
 
 /*especificidad 0,0,2 */
+/* Validación CSS: falta background-color, se hereda de dl */
 dl dt {
     font-weight: bold;
     color: #0000ff;             
     font-size: 1.2rem;
     margin-top: 0.8rem;
-    /* Validación CSS: falta background-color, se hereda */
 }
 
 /*especificidad 0,0,2 */
+/* Validación CSS: falta background-color, se hereda de dl */
 dl dd {
-    margin-left: 2rem;
+    margin-left: 0;
     font-size: 1rem;
     color: #000c66;             
     line-height: 1.5;
-    /* Validación CSS: falta background-color, se hereda */
 }
 
-/*especificidad 0,1,2 */
-dl dt:hover {
-    color:  #050a30;            
-    cursor: pointer;
-    text-decoration: underline;
-    /* Validación CSS: falta background-color, se hereda */
-}
-
-/*especificidad 0,1,2 */
-dl dd:hover {
-    background-color: #000c66;   
-    color: #ffffff;              
-}
-
+/*especificidad 0,0,1 */
 img, svg {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
+/*especificidad 0,0,1 */
 audio {
     display: block;
     margin: 1rem 0;
 }
 
+/*especificidad 0,0,3 */
 section article svg {
     width: 50%;
     margin: 1rem 0;

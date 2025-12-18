@@ -107,16 +107,6 @@ class Configuracion {
             id_dispositivo INT NOT NULL,
             tiempo INT NOT NULL,
             completado BOOLEAN NOT NULL,
-            respuesta1 TEXT,
-            respuesta2 TEXT,
-            respuesta3 TEXT,
-            respuesta4 TEXT,
-            respuesta5 TEXT,
-            respuesta6 TEXT,
-            respuesta7 TEXT,
-            respuesta8 TEXT,
-            respuesta9 TEXT,
-            respuesta10 TEXT,
             comentarios TEXT,
             propuestas_mejora TEXT,
             valoracion TINYINT NOT NULL CHECK (valoracion BETWEEN 0 AND 10),
@@ -125,9 +115,22 @@ class Configuracion {
         )";
         
         if($this->db->query($crearResultados) === TRUE) {
-            echo "<p>Tabla 'resultados' creada con éxito (Estructura de 10 respuestas)</p>";
+            echo "<p>Tabla 'resultados' creada con éxito</p>";
         } else {
             echo "<p>ERROR en la creación de la tabla 'resultados'. Error: " . $this->db->error . "</p>";
+        }
+
+        $crearRespuestas = "CREATE TABLE IF NOT EXISTS respuestas (
+            id_respuesta INT AUTO_INCREMENT PRIMARY KEY,
+            id_resultado INT NOT NULL,
+            numero_pregunta INT NOT NULL,
+            respuesta TEXT,
+            FOREIGN KEY (id_resultado) REFERENCES resultados(id_resultado) ON DELETE CASCADE
+        )";
+        if($this->db->query($crearRespuestas) === TRUE) {
+            echo "<p>Tabla 'respuestas' creada con éxito</p>";
+        } else {
+            echo "<p>ERROR en la creación de la tabla 'respuestas'. Error: " . $this->db->error . "</p>";
         }
 
         $crearObservaciones = "CREATE TABLE IF NOT EXISTS observaciones (
@@ -161,6 +164,7 @@ class Configuracion {
         $this->db->query("SET FOREIGN_KEY_CHECKS = 0");
 
         $this->db->query("TRUNCATE TABLE observaciones");
+        $this->db->query("TRUNCATE TABLE respuestas");
         $this->db->query("TRUNCATE TABLE resultados");
         $this->db->query("TRUNCATE TABLE usuarios");
         $this->db->query("TRUNCATE TABLE dispositivos");
@@ -174,8 +178,7 @@ class Configuracion {
         $insertDispositivos = "INSERT INTO dispositivos (descripcion) VALUES ('Ordenador'), ('Tableta'), ('Teléfono')";
         $this->db->query($insertDispositivos);
 
-        echo "<p>Datos básicos reinsertados en las tablas de catálogo</p>";
-        echo "<p><strong>Base de datos reiniciada correctamente</strong></p>";
+        echo "<p>Base de datos reiniciada correctamente</p>";
 
         $this->cerrarConexion();
         echo "</section>";
@@ -198,7 +201,6 @@ class Configuracion {
     }
 
     public function exportarDatos() {
-        echo "<section><h2>Exportar Datos</h2>";
         $this->conectarBaseDatos();
 
         $nombreArchivo = "exportacion_" . date('Y-m-d_H-i-s') . ".csv";
@@ -222,8 +224,16 @@ class Configuracion {
                     u.pericia_informatica, u.profesion,
                     r.id_dispositivo, d.descripcion as dispositivo,
                     r.tiempo, r.completado,
-                    r.respuesta1, r.respuesta2, r.respuesta3, r.respuesta4, r.respuesta5,
-                    r.respuesta6, r.respuesta7, r.respuesta8, r.respuesta9, r.respuesta10,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 1) as respuesta1,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 2) as respuesta2,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 3) as respuesta3,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 4) as respuesta4,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 5) as respuesta5,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 6) as respuesta6,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 7) as respuesta7,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 8) as respuesta8,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 9) as respuesta9,
+                    (SELECT respuesta FROM respuestas WHERE id_resultado = r.id_resultado AND numero_pregunta = 10) as respuesta10,
                     r.valoracion, r.comentarios as comentarios_usuario, r.propuestas_mejora,
                     o.id_observacion, o.comentarios as comentarios_observador
                 FROM resultados r
@@ -247,14 +257,20 @@ class Configuracion {
         }
 
         fclose($salida);
-        echo "<p>Datos exportados correctamente al archivo: " . $nombreArchivo . "</p>";
         $this->cerrarConexion();
-        echo "</section>";
+
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $nombreArchivo . '"');
+        header('Content-Length: ' . filesize($nombreArchivo));
+        readfile($nombreArchivo);
+        exit();
     }
 }
 
 $config = new Configuracion();
-
+if (isset($_POST['exportar'])) {
+    $config->exportarDatos();
+}
 ?>
 
 <!DOCTYPE html>
@@ -291,8 +307,6 @@ $config = new Configuracion();
             $config->reiniciarBaseDatos();
         } elseif(isset($_POST['eliminar'])) {
             $config->eliminarBaseDatos();
-        } elseif(isset($_POST['exportar'])) {
-            $config->exportarDatos();
         }
         ?>
     </main>

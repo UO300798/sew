@@ -15,7 +15,7 @@ class Svg(object):
         ET.SubElement(self.raiz, 'line',
                       x1=x1, y1=y1, x2=x2, y2=y2,
                       stroke=stroke,
-                      **{'stroke-width': strokeWidth}) # Corregido: stroke-width
+                      **{'stroke-width': strokeWidth})
 
     def addPolyline(self, points, stroke, strokeWidth, fill):
         ET.SubElement(self.raiz, 'polyline',

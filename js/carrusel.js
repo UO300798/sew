@@ -75,3 +75,6 @@ class Carrusel {
 
     }
 }
+
+    var miCarrusel = new Carrusel();
+    miCarrusel.getFotografias();

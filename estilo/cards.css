@@ -32,6 +32,7 @@ article img {
     border-radius: 0.5em;
     background: #1C7CCC;
     backface-visibility: hidden;
+    /* Validación CSS: falta color, se hereda de body */
 }
 
 /* Regla para centrar el texto "Memory Card" vertical y horizontalmente en cada carta */

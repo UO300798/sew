@@ -1,3 +1,8 @@
+/* Sergio Gonzalez Martinez UO300798 */
+/* Hoja de estilo para el layout del proyecto MotoGP-Desktop */
+/* advertencia linea 0: redefinición column-gap se produce en la línea 40 */
+/* advertencia linea 0: redefinición row-gap se produce en la línea 40 */
+
 /* especificidad: 0,0,1 */
 header {
     display: flex;
@@ -13,7 +18,7 @@ header nav {
 }
 
 /* especificidad: 0,0,2 */
-body > div {
+section > div {
     width: 90%;
     height: 70vh;  
     margin: 2em;
@@ -29,8 +34,10 @@ body > div {
     /* especificidad: 0,0,2 */
     header nav {
         flex-direction: column;
+        /* Validación CSS: Redefinición de gap de header nav */
+        /* redefinición de la propiedad column-gap */
+        /* redefinición de la propiedad row-gap */
         gap: 0.5rem;
-        /* Validación CSS: Redefinición de gap para diseño adaptable */
     }
 
     /* especificidad: 0,1,1 */
@@ -80,35 +87,14 @@ body > div {
     }
 
     /* especificidad: 0,0,2 */
-    body > div {
+    section > div {
+        /* Validación CSS: Redefinición de width de section > div */
         width: 100%;
-        /* Validación CSS: Redefinición de width para diseño adaptable */
+        /* Validación CSS: Redefinición de height de section > div */
         height: 60vh;
-        /* Validación CSS: Redefinición de height para diseño adaptable */
+        /* Validación CSS: Redefinición de margin-bottom, margin-left, margin-top, margin-right de section > div */
         margin: 1em 0;
-        /* Validación CSS: Redefinición de margin para diseño adaptable */
         border: 2px solid #333;
     }
-
-    /*
-    main img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    article svg {
-        max-width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    main p img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-    }
-        */
-
-    
+   
 }

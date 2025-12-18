@@ -56,7 +56,6 @@
 
 <html lang="es">
 <head>
-    <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <title>MotoGP-Clasificaciones</title>
     <meta name="author" content="Sergio Gonzalez Martinez" />
@@ -69,7 +68,6 @@
 </head>
 
 <body>
-    <!-- Datos con el contenidos que aparece en el navegador -->
     <header>
         <h1><a href="index.html">MotoGP Desktop</a></h1>
         <nav>

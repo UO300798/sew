@@ -37,7 +37,7 @@ if (count($_POST) > 0) {
     <meta charset="UTF-8" />
     <title>MotoGP-Cronómetro</title>
     <meta name='author' content='Sergio Gonzalez Martinez' />
-    <meta name='description' content='Cronómetro del proyecto MotoGP-Desktop' />
+    <meta name='description' content='Cronómetro del proyecto MotoGP-Desktop en php' />
     <meta name='keywords' content="MotoGP, Cronómetro" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />

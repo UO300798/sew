@@ -39,6 +39,14 @@ if (isset($_POST['iniciar_prueba'])) {
     
     $step = 3;
 
+} elseif (isset($_POST['guardar_valoracion'])) {
+    if (isset($_SESSION['respuestas'])) {
+        $_SESSION['respuestas'] = array_merge($_SESSION['respuestas'], $_POST);
+    } else {
+        $_SESSION['respuestas'] = $_POST;
+    }
+    $step = 4;
+
 } elseif (isset($_POST['guardar_observaciones'])) {
     $db = new mysqli($servername, $username, $password, $database);
     if ($db->connect_error) {
@@ -69,26 +77,31 @@ if (isset($_POST['iniciar_prueba'])) {
 
     $sqlResult = "INSERT INTO resultados (
                     id_usuario, id_dispositivo, tiempo, completado, 
-                    respuesta1, respuesta2, respuesta3, respuesta4, respuesta5, 
-                    respuesta6, respuesta7, respuesta8, respuesta9, respuesta10, 
                     comentarios, propuestas_mejora, valoracion
-                  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                  ) VALUES (?, ?, ?, ?, ?, ?, ?)";
     
     $stmt2 = $db->prepare($sqlResult);
     
-    $stmt2->bind_param("iiiissssssssssssi", 
+    $stmt2->bind_param("iiiissi", 
         $idUsuario, 
         $idDispositivo, 
         $tiempoEntero, 
         $completado,
-        $r['p1'], $r['p2'], $r['p3'], $r['p4'], $r['p5'], 
-        $r['p6'], $r['p7'], $r['p8'], $r['p9'], $r['p10'],
         $r['comentarios_usuario'], 
         $r['propuestas_mejora'], 
         $r['valoracion']
     );
     $stmt2->execute();
+    $idResultado = $db->insert_id;
     $stmt2->close();
+
+    $sqlResp = "INSERT INTO respuestas (id_resultado, numero_pregunta, respuesta) VALUES (?, ?, ?)";
+    $stmtResp = $db->prepare($sqlResp);
+    for ($i = 1; $i <= 10; $i++) {
+        $stmtResp->bind_param("iis", $idResultado, $i, $r['p' . $i]);
+        $stmtResp->execute();
+    }
+    $stmtResp->close();
 
     $comentariosObservador = $_POST['comentarios_observador'];
     if (!empty($comentariosObservador)) {
@@ -101,7 +114,7 @@ if (isset($_POST['iniciar_prueba'])) {
 
     $db->close();
     session_destroy(); 
-    $step = 4;
+    $step = 5;
 }
 ?>
 
@@ -203,24 +216,33 @@ if (isset($_POST['iniciar_prueba'])) {
                     <p>10. ¿Quién iba primero en el mundial despues del GP de Montmelo?</p>
                     <p><input type="text" name="p10" required></p>
 
-                    <p>11. Valoración global de la web (0-10):</p>
-                    <p><input type="number" name="valoracion" min="0" max="10" required></p>
-
-                    <p>Comentarios generales sobre la prueba: (Opcional)</p>
-                    <textarea name="comentarios_usuario"></textarea>
-
-                    <p>Propuestas de mejora para la aplicación: (Opcional)</p>
-                    <textarea name="propuestas_mejora"></textarea>
-
                     <button type="submit" name="terminar_prueba">Terminar Prueba</button>
                 </form>
             </section>
 
         <?php elseif ($step == 3): ?>
             <section>
+                <h2>Evaluación y Comentarios</h2>
+                <p>Por favor, complete la siguiente información obligatoria.</p>
+                <form method="post" action="pruebas_usabilidad.php">
+                    <p>Valoración global de la web (0-10):</p>
+                    <p><input type="number" name="valoracion" min="0" max="10" required></p>
+
+                    <p>Comentarios generales sobre la prueba:</p>
+                    <textarea name="comentarios_usuario" required></textarea>
+
+                    <p>Propuestas de mejora para la aplicación:</p>
+                    <textarea name="propuestas_mejora" required></textarea>
+
+                    <button type="submit" name="guardar_valoracion">Siguiente</button>
+                </form>
+            </section>
+
+        <?php elseif ($step == 4): ?>
+            <section>
                 <h2>Panel del Observador</h2>
-                <p><strong>¡Prueba finalizada por el usuario!</strong></p>
-                <p>El tiempo ha sido registrado internamente. Ahora, como observador, introduzca sus notas sobre la sesión.</p>
+                <p>¡Prueba finalizada por el usuario!</p>
+                <p>Como observador, introduzca sus notas sobre la sesión.</p>
                 
                 <form method="post" action="pruebas_usabilidad.php">
                     <p>Comentarios / Incidencias detectadas durante la prueba:</p>
@@ -230,11 +252,10 @@ if (isset($_POST['iniciar_prueba'])) {
                 </form>
             </section>
 
-        <?php elseif ($step == 4): ?>
+        <?php elseif ($step == 5): ?>
             <section>
                 <h2>¡Datos Guardados!</h2>
                 <p>La prueba de usabilidad ha sido registrada correctamente en la base de datos.</p>
-                <p><a href="pruebas_usabilidad.php">Realizar nueva prueba</a></p>
             </section>
         <?php endif; ?>
 

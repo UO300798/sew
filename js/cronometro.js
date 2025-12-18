@@ -99,3 +99,4 @@ class Cronometro {
         this.#mostrar();
     }
 }
+new Cronometro();

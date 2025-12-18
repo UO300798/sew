@@ -13,7 +13,7 @@
     <link rel="icon" href="multimedia/favicon.ico" type="image/x-icon" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/ciudad.js"></script>
+    <script src="js/ciudad.js" defer></script>
 </head>
 
 <body>
@@ -33,26 +33,6 @@
     <h2>Meteorología de MotoGP-Desktop</h2>
 
 
-    <main>
-        </main>
-
-
-    <script>
-        let ciudadBarcelona = new Ciudad('Barcelona', 'España', 'barcelonés/barcelonesa');
-        ciudadBarcelona.rellenarAtributosSecundarios(1702547, 41.389558, 2.168194);
-
-        const $main = $("main");
-
-        $main.append('<h3>Información de la Sede del Circuito</h3>');
-        $main.append('<p>Ciudad: ' + ciudadBarcelona.getNombreCiudad() + '</p>');
-        $main.append('<p>País: ' + ciudadBarcelona.getNombrePais() + '</p>');
-
-        $main.append(ciudadBarcelona.getInformacionSecundariaHTML());
-        $main.append(ciudadBarcelona.getCoordenadasHTML());
-
-        ciudadBarcelona.getMeteorologiaCarrera()
-            .done(() => ciudadBarcelona.getMeteorologiaEntrenos());
-    </script>
 
 </body>
 </html>

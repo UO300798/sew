@@ -2,7 +2,6 @@
 
 <html lang="es">
 <head>
-    <!-- Datos que describen el documento -->
      
     <meta charset="UTF-8" />
     <title>MotoGP-Circuito</title>
@@ -14,20 +13,17 @@
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="icon" href="multimedia/favicon.ico" type="image/x-icon" />
 
-    <!-- MapBox CSS -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet" />
     
-    <!-- MapBox JS -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="js/circuito.js"></script>
+    <script src="js/circuito.js" defer></script>
 
     
 </head>
 
 <body>
-    <!-- Datos con el contenidos que aparece en el navegador -->
      <header>
      <h1><a href="index.html">MotoGP Desktop</a></h1>
     <nav>
@@ -47,20 +43,6 @@
         <h2>Circuito de MotoGP-Desktop</h2>
     </main>
 
-    <section>
-        <article>
-            <h4>Altimetría del circuito</h4>
-        </article>
-    </section>
 
-    <div></div>
-
-
-    <script>
-        const miCircuito = new Circuito();
-        const miCargadorSVG = new CargadorSVG();
-        const miCargadorKML = new CargadorKML();
-
-    </script>
 </body>
 </html>

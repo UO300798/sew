@@ -117,3 +117,5 @@ class Memoria {
         sonPareja ? this.#deshabilitarCartas() : this.#cubrirCartas();
     }
 }
+
+new Memoria();
