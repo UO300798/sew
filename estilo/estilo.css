@@ -20,9 +20,9 @@ header h1 {
 
 /*especificidad 0,1,2 */
 nav a.active {
-    color: #ffffff;              
+    color: #ffffff;     /* Validación CSS: falta background-color, se hereda de nav */              
     text-decoration: underline;  
-    font-size: 2rem;    /* Validación CSS: falta background-color, se hereda de nav */
+    font-size: 2rem;    
 }
 
 /*especificidad 0,0,3 */
@@ -117,7 +117,7 @@ dl dd {
 }
 
 /*especificidad 0,0,1 */
-img, svg {
+img, svg, video {
     max-width: 100%;
     height: auto;
     display: block;
