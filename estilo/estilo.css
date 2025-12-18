@@ -9,64 +9,56 @@ body {
 }
 
 /*especificidad 0,0,1 */
-/* Validación CSS: falta color, se hereda de body */
 header {
-    background-color: #050a30;   
+    background-color: #050a30;  /* Validación CSS: falta color, se hereda de body */
 }
 
 /*especificidad 0,0,2 */
-/* Validación CSS: falta background-color, se hereda de header */
 header h1 {
-    color: #ffffff;
+    color: #ffffff;     /* Validación CSS: falta background-color, se hereda de header */
 }
 
 /*especificidad 0,1,2 */
-/* Validación CSS: falta background-color, se hereda de nav */
 nav a.active {
     color: #ffffff;              
     text-decoration: underline;  
-    font-size: 2rem;
+    font-size: 2rem;    /* Validación CSS: falta background-color, se hereda de nav */
 }
 
 /*especificidad 0,0,3 */
 p > a + strong {
-    font-size: 1.5rem;          
+    font-size: 1.5rem;            
     font-weight: bold;
 }
 
 /*especificidad 0,0,2 */
-/* Validación CSS: falta background-color, se hereda de header */
 header a {
     text-decoration-line: none;  
-    color: #ffffff;
+    color: #ffffff;     /* Validación CSS: falta background-color, se hereda de header */
     font-size: 2rem;
 }
 
 /*especificidad 0,1,1 */
-/* Validación CSS: falta background-color, se hereda del contenedor padre */
 a[href^="http"] {
-    color: #0000ff;              
+    color: #0000ff;     /* Validación CSS: falta background-color, se hereda del contenedor padre */              
     text-decoration: none;
     font-weight: bold;
 }
 
 /*especificidad 0,2,1 */
-/* Validación CSS: falta background-color, se hereda de a[href^="http"] */
 a[href^="http"]:visited {
-    color: #000c66;              
+    color: #000c66;     /* Validación CSS: falta background-color, se hereda de a[href^="http"] */              
 }
 
 /*especificidad 0,2,1 */
-/* Validación CSS: falta background-color, se hereda de a[href^="http"] */
 a[href^="http"]:hover {
-    color: #050a30;              
+    color: #050a30;     /* Validación CSS: falta background-color, se hereda de a[href^="http"] */               
     text-decoration: underline;
 }
 
 /*especificidad 0,2,1 */
-/* Validación CSS: falta background-color, se hereda de a[href^="http"] */
 a[href^="http"]:active {
-    color: #0000ff;              
+    color: #0000ff;     /* Validación CSS: falta background-color, se hereda de a[href^="http"] */           
 }
 
 /*especificidad 0,0,1 */
@@ -79,12 +71,11 @@ table {
 }
 
 /*especificidad 0,0,2 */
-/* Validación CSS: falta background-color, se hereda de table */
 table caption {
     font-weight: bold;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: #0000ff;              
+    color: #0000ff;     /* Validación CSS: falta background-color, se hereda de table */              
 }
 
 /*especificidad 0,0,2 */
@@ -100,9 +91,8 @@ table th {
 }
 
 /*especificidad 0,0,1 */
-/* Validación CSS: falta color, se hereda de body */
 dl {
-    background-color: #7ec8e3;   
+    background-color: #7ec8e3;   /* Validación CSS: falta color, se hereda de body */
     padding: 0;
     border-radius: 8px;
     width: 100%;
@@ -111,20 +101,18 @@ dl {
 }
 
 /*especificidad 0,0,2 */
-/* Validación CSS: falta background-color, se hereda de dl */
 dl dt {
     font-weight: bold;
-    color: #0000ff;             
+    color: #0000ff; /* Validación CSS: falta background-color, se hereda de dl */             
     font-size: 1.2rem;
     margin-top: 0.8rem;
 }
 
 /*especificidad 0,0,2 */
-/* Validación CSS: falta background-color, se hereda de dl */
 dl dd {
     margin-left: 0;
     font-size: 1rem;
-    color: #000c66;             
+    color: #000c66; /* Validación CSS: falta background-color, se hereda de dl */             
     line-height: 1.5;
 }
 

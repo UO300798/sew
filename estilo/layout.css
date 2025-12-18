@@ -19,8 +19,8 @@ header nav {
 
 /* especificidad: 0,0,2 */
 section > div {
-    width: 90%;
-    height: 70vh;  
+    width: 70%;
+    height: 40rem;  
     margin: 2em;
 }
 
@@ -88,13 +88,12 @@ section > div {
 
     /* especificidad: 0,0,2 */
     section > div {
-        /* Validación CSS: Redefinición de width de section > div */
+         /* Validación CSS: Redefinición de width de section > div */
         width: 100%;
         /* Validación CSS: Redefinición de height de section > div */
         height: 60vh;
         /* Validación CSS: Redefinición de margin-bottom, margin-left, margin-top, margin-right de section > div */
         margin: 1em 0;
-        border: 2px solid #333;
     }
    
 }
