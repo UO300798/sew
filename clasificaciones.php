@@ -83,7 +83,7 @@
         </nav>
     </header>
     
-    <p class="breadcrumbs">Estás en: <a href="index.html">Inicio</a> -> <strong>Clasificaciones</strong></p>
+    <p>Estás en: <a href="index.html">Inicio</a> -> <strong>Clasificaciones</strong></p>
 
     <main>
         <h2>Clasificaciones de MotoGP-Desktop</h2>

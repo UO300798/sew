@@ -189,7 +189,7 @@ if (isset($_POST['iniciar_prueba'])) {
                     <p>1. ¿En qué país nació Brad Binder?</p>
                     <p><input type="text" name="p1" required></p>
 
-                    <p>2. ¿Cuantas secciones principales aparecen en el menú de navegación?</p>
+                    <p>2. ¿En que año debuto Brad Binder en Moto3?</p>
                     <p><input type="number" name="p2" required></p>
 
                     <p>3. ¿En qué año nació Brad Binder?</p>

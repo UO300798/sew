@@ -240,7 +240,8 @@ class Configuracion {
                 JOIN usuarios u ON r.id_usuario = u.id_usuario
                 JOIN generos g ON u.id_genero = g.id_genero
                 JOIN dispositivos d ON r.id_dispositivo = d.id_dispositivo
-                LEFT JOIN observaciones o ON u.id_usuario = o.id_usuario";
+                LEFT JOIN observaciones o ON u.id_usuario = o.id_usuario
+                ORDER BY u.id_usuario ASC";
 
         $resultado = $this->db->query($sql);
 

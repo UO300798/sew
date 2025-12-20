@@ -59,7 +59,7 @@ if (count($_POST) > 0) {
         </nav>
     </header>
     
-    <p class="breadcrumbs">Estás en: <a href="index.html">Inicio</a> -> <a href="juegos.html">Juegos</a> -> <strong>Cronómetro</strong></p>
+    <p>Estás en: <a href="index.html">Inicio</a> -> <a href="juegos.html">Juegos</a> -> <strong>Cronómetro</strong></p>
 
     <h2>Cronómetro de MotoGP-Desktop</h2>
 
@@ -74,9 +74,9 @@ if (count($_POST) > 0) {
             ?>
 
             <form action="#" method="post" name="controlCronometro">
-                <input type="submit" class="button" name="arrancar" value="Arrancar"/>
-                <input type="submit" class="button" name="parar" value="Parar"/>
-                <input type="submit" class="button" name="mostrar" value="Mostrar Tiempo"/>
+                <input type="submit" name="arrancar" value="Arrancar"/>
+                <input type="submit" name="parar" value="Parar"/>
+                <input type="submit" name="mostrar" value="Mostrar Tiempo"/>
             </form>
             
         </section>

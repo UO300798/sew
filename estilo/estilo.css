@@ -64,24 +64,19 @@ a[href^="http"]:active {
 /*especificidad 0,0,1 */
 table {
     border-collapse: collapse;
-    width: 100%;
-    margin: 1rem 0;
     font-size: 1rem;
-    text-align: center;
 }
 
 /*especificidad 0,0,2 */
 table caption {
     font-weight: bold;
     font-size: 1.2rem;
-    margin-bottom: 0.5rem;
     color: #0000ff;     /* Validación CSS: falta background-color, se hereda de table */              
 }
 
 /*especificidad 0,0,2 */
 table th, table td {
     border: 1px solid #0000ff;   
-    padding: 0.5rem 1rem;
 }
 
 /*especificidad 0,0,2 */
@@ -93,10 +88,7 @@ table th {
 /*especificidad 0,0,1 */
 dl {
     background-color: #7ec8e3;   /* Validación CSS: falta color, se hereda de body */
-    padding: 0;
     border-radius: 8px;
-    width: 100%;
-    margin: 1rem 0;
     font-family: Tahoma, Arial, Verdana, sans-serif;
 }
 
@@ -105,32 +97,11 @@ dl dt {
     font-weight: bold;
     color: #0000ff; /* Validación CSS: falta background-color, se hereda de dl */             
     font-size: 1.2rem;
-    margin-top: 0.8rem;
 }
 
 /*especificidad 0,0,2 */
 dl dd {
-    margin-left: 0;
     font-size: 1rem;
     color: #000c66; /* Validación CSS: falta background-color, se hereda de dl */             
     line-height: 1.5;
-}
-
-/*especificidad 0,0,1 */
-img, svg, video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/*especificidad 0,0,1 */
-audio {
-    display: block;
-    margin: 1rem 0;
-}
-
-/*especificidad 0,0,3 */
-section article svg {
-    width: 50%;
-    margin: 1rem 0;
 }

@@ -1,7 +1,7 @@
 /* Sergio Gonzalez Martinez UO300798 */
 /* Hoja de estilo para el layout del proyecto MotoGP-Desktop */
-/* advertencia linea 0: redefinición column-gap se produce en la línea 40 */
-/* advertencia linea 0: redefinición row-gap se produce en la línea 40 */
+/* advertencia linea 0: redefinición column-gap se produce en la línea 89 */
+/* advertencia linea 0: redefinición row-gap se produce en la línea 89 */
 
 /* especificidad: 0,0,1 */
 header {
@@ -24,6 +24,59 @@ section > div {
     margin: 2em;
 }
 
+/* especificidad: 0,0,1 */
+table {
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+/* especificidad: 0,0,2 */
+table caption {
+    margin-bottom: 0.5rem;
+}
+
+/* especificidad: 0,0,2 */
+table th, table td {
+    padding: 0.5rem 1rem;
+}
+
+/* especificidad: 0,0,1 */
+dl {
+    padding: 0;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+/* especificidad: 0,0,2 */
+dl dt {
+    margin-top: 0.8rem;
+}
+
+/* especificidad: 0,0,2 */
+dl dd {
+    margin-left: 0;
+}
+
+/* especificidad: 0,0,1 */
+img, svg, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* especificidad: 0,0,1 */
+audio {
+    display: block;
+    margin: 1rem 0;
+}
+
+/* especificidad: 0,0,3 */
+section article svg {
+    width: 50%;
+    margin: 1rem 0;
+}
+
 @media (min-width: 320px) and (max-width: 799px) {
     /* especificidad: 0,0,1 */
     header {
@@ -34,10 +87,7 @@ section > div {
     /* especificidad: 0,0,2 */
     header nav {
         flex-direction: column;
-        /* Validación CSS: Redefinición de gap de header nav */
-        /* redefinición de la propiedad column-gap */
-        /* redefinición de la propiedad row-gap */
-        gap: 0.5rem;
+        gap: 0.5rem; /* Validación CSS: Redefinición de gap de header nav*/
     }
 
     /* especificidad: 0,1,1 */
@@ -48,19 +98,19 @@ section > div {
     /* especificidad: 0,0,1 */
     video {
         width: 100%;
-        height: auto;
+        height: auto; /* Validación CSS: Redefinición de height de video*/
         margin-bottom: 1rem; 
     }
 
     /* especificidad: 0,0,1 */
     audio {
         width: 100%; 
-        margin-top: 0.5rem;
+        margin-top: 0.5rem; /* Validación CSS: Redefinición de margin-top de audio*/
     }
 
    /* especificidad: 0,0,1 */
    table {
-        width: 100%;
+        width: 100%; /* Validación CSS: Redefinición de width de table */
         font-size: 0.8rem; 
         border-collapse: collapse;
         table-layout: fixed; 
@@ -70,7 +120,7 @@ section > div {
 
     /* especificidad: 0,0,2 */
     table th, table td {
-        padding: 0.3rem 0.3rem;
+        padding: 0.3rem 0.3rem; /* Validación CSS: Redefinición de padding-bottom, padding-left, padding-top, padding-right de table th,table td */
     }
 
     /* especificidad: 0,0,2 */
@@ -88,12 +138,9 @@ section > div {
 
     /* especificidad: 0,0,2 */
     section > div {
-         /* Validación CSS: Redefinición de width de section > div */
-        width: 100%;
-        /* Validación CSS: Redefinición de height de section > div */
-        height: 60vh;
-        /* Validación CSS: Redefinición de margin-bottom, margin-left, margin-top, margin-right de section > div */
-        margin: 1em 0;
+        width: 100%; /* Validación CSS: Redefinición de width de section > div*/
+        height: 60vh; /* Validación CSS: Redefinición de height de section > div*/
+        margin: 1em 0; /* Validación CSS: Redefinición de margin-bottom, margin-left, margin-top, margin-right de section > div*/
     }
    
 }
