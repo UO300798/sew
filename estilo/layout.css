@@ -1,7 +1,5 @@
 /* Sergio Gonzalez Martinez UO300798 */
 /* Hoja de estilo para el layout del proyecto MotoGP-Desktop */
-/* advertencia linea 0: redefinición column-gap se produce en la línea 89 */
-/* advertencia linea 0: redefinición row-gap se produce en la línea 89 */
 
 /* especificidad: 0,0,1 */
 header {
@@ -87,7 +85,7 @@ section article svg {
     /* especificidad: 0,0,2 */
     header nav {
         flex-direction: column;
-        gap: 0.5rem; /* Validación CSS: Redefinición de gap de header nav*/
+        row-gap: 0.5rem; /* Validación CSS: Redefinición de gap de header nav*/
     }
 
     /* especificidad: 0,1,1 */
@@ -98,7 +96,6 @@ section article svg {
     /* especificidad: 0,0,1 */
     video {
         width: 100%;
-        height: auto; /* Validación CSS: Redefinición de height de video*/
         margin-bottom: 1rem; 
     }
 
@@ -110,7 +107,6 @@ section article svg {
 
    /* especificidad: 0,0,1 */
    table {
-        width: 100%; /* Validación CSS: Redefinición de width de table */
         font-size: 0.8rem; 
         border-collapse: collapse;
         table-layout: fixed; 

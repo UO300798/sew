@@ -1,7 +1,5 @@
 /* Sergio Gonzalez Martinez UO300798 */
 /* Hoja de estilo para el layout de las cartas del proyecto MotoGP-Desktop */
-/* advertencia linea 0: redefinición column-gap se produce en la línea 45 */
-/* advertencia linea 0: redefinición row-gap se produce en la línea 45 */
 
 /* especificidad: 0,0,1 */
 main {
@@ -39,9 +37,5 @@ main p {
     /* especificidad: 0,0,1 */
     main {
         grid-template-columns: repeat(2, 1fr);  /* Validación CSS: Redefinición de grid-template-columns de main */
-        /* Validación CSS: Redefinición de gap de main */
-        /* redefinición de la propiedad column-gap */
-        /* redefinición de la propiedad row-gap */
-        gap: 1em; 
     }
 }

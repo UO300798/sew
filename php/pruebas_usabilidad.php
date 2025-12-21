@@ -144,15 +144,15 @@ if (isset($_POST['iniciar_prueba'])) {
                     
                     <h3>Perfil de Usuario</h3>
                     
-                    <p>Edad:</p>
-                    <p><input type="number" name="edad" required min="0" max="99"></p>
+                    <p><label for="edad">Edad:</label></p>
+                    <p><input type="number" id="edad" name="edad" required min="0" max="99"></p>
 
-                    <p>Profesión:</p>
-                    <p><input type="text" name="profesion" required></p>
+                    <p><label for="profesion">Profesión:</label></p>
+                    <p><input type="text" id="profesion" name="profesion" required></p>
 
-                    <p>Género:</p>
+                    <p><label for="genero">Género:</label></p>
                     <p>
-                        <select name="genero" required>
+                        <select id="genero" name="genero" required>
                             <option value="" selected disabled>Seleccione una opción</option>
                             <option value="1">Hombre</option>
                             <option value="2">Mujer</option>
@@ -160,14 +160,14 @@ if (isset($_POST['iniciar_prueba'])) {
                         </select>
                     </p>
 
-                    <p>Pericia Informática (0-10):</p>
-                    <p><input type="number" name="pericia" min="0" max="10" required></p>
+                    <p><label for="pericia">Pericia Informática (0-10):</label></p>
+                    <p><input type="number" id="pericia" name="pericia" min="0" max="10" required></p>
 
                     <h3>Configuración de la Prueba</h3>
                     
-                    <p>Dispositivo utilizado:</p>
+                    <p><label for="dispositivo">Dispositivo utilizado:</label></p>
                     <p>
-                        <select name="dispositivo" required>
+                        <select id="dispositivo" name="dispositivo" required>
                             <option value="" selected disabled>Seleccione una opción</option>
                             <option value="1">Ordenador</option>
                             <option value="2">Tableta</option>
@@ -186,35 +186,35 @@ if (isset($_POST['iniciar_prueba'])) {
                 
                 <form method="post" action="pruebas_usabilidad.php">
                     
-                    <p>1. ¿En qué país nació Brad Binder?</p>
-                    <p><input type="text" name="p1" required></p>
+                    <p><label for="p1">1. ¿En qué país nació Brad Binder?</label></p>
+                    <p><input type="text" id="p1" name="p1" required></p>
 
-                    <p>2. ¿En que año debuto Brad Binder en Moto3?</p>
-                    <p><input type="number" name="p2" required></p>
+                    <p><label for="p2">2. ¿En que año debuto Brad Binder en Moto3?</label></p>
+                    <p><input type="number" id="p2" name="p2" required></p>
 
-                    <p>3. ¿En qué año nació Brad Binder?</p>
-                    <p><input type="number" name="p3" required></p>
+                    <p><label for="p3">3. ¿En qué año nació Brad Binder?</label></p>
+                    <p><input type="number" id="p3" name="p3" required></p>
 
-                    <p>4. ¿Con qué equipo debutó Brad Binder en MotoGP?</p>
-                    <p><input type="text" name="p4" required></p>
+                    <p><label for="p4">4. ¿Con qué equipo debutó Brad Binder en MotoGP?</label></p>
+                    <p><input type="text" id="p4" name="p4" required></p>
 
-                    <p>5. ¿Cuál es la ciudad sede del circuito?</p>
-                    <p><input type="text" name="p5" required></p>
+                    <p><label for="p5">5. ¿Cuál es la ciudad sede del circuito?</label></p>
+                    <p><input type="text" id="p5" name="p5" required></p>
                     
-                    <p>6. ¿Cuantos habitantes tiene Barcelona?</p>
-                    <p><input type="number" name="p6" required></p>
+                    <p><label for="p6">6. ¿Cuantos habitantes tiene Barcelona?</label></p>
+                    <p><input type="number" id="p6" name="p6" required></p>
 
-                    <p>7. ¿Cuantas tarjetas hay en el juego de memoria?</p>
-                    <p><input type="number" name="p7" required></p>
+                    <p><label for="p7">7. ¿Cuantas tarjetas hay en el juego de memoria?</label></p>
+                    <p><input type="number" id="p7" name="p7" required></p>
 
-                    <p>8. ¿Qué significa el término "ECU"?</p>
-                    <p><input type="text" name="p8" required></p>
+                    <p><label for="p8">8. ¿Qué significa el término "ECU"?</label></p>
+                    <p><input type="text" id="p8" name="p8" required></p>
 
-                    <p>9. ¿Cuántos puntos obtuvo Brad Binder el año pasado?</p>
-                    <p><input type="number" name="p9" required></p>
+                    <p><label for="p9">9. ¿Cuántos puntos obtuvo Brad Binder el año pasado?</label></p>
+                    <p><input type="number" id="p9" name="p9" required></p>
 
-                    <p>10. ¿Quién iba primero en el mundial despues del GP de Montmelo?</p>
-                    <p><input type="text" name="p10" required></p>
+                    <p><label for="p10">10. ¿Quién iba primero en el mundial despues del GP de Montmelo?</label></p>
+                    <p><input type="text" id="p10" name="p10" required></p>
 
                     <button type="submit" name="terminar_prueba">Terminar Prueba</button>
                 </form>
@@ -225,14 +225,14 @@ if (isset($_POST['iniciar_prueba'])) {
                 <h2>Evaluación y Comentarios</h2>
                 <p>Por favor, complete la siguiente información obligatoria.</p>
                 <form method="post" action="pruebas_usabilidad.php">
-                    <p>Valoración global de la web (0-10):</p>
-                    <p><input type="number" name="valoracion" min="0" max="10" required></p>
+                    <p><label for="valoracion">Valoración global de la web (0-10):</label></p>
+                    <p><input type="number" id="valoracion" name="valoracion" min="0" max="10" required></p>
 
-                    <p>Comentarios generales sobre la prueba:</p>
-                    <textarea name="comentarios_usuario" required></textarea>
+                    <p><label for="comentarios_usuario">Comentarios generales sobre la prueba:</label></p>
+                    <textarea id="comentarios_usuario" name="comentarios_usuario" required></textarea>
 
-                    <p>Propuestas de mejora para la aplicación:</p>
-                    <textarea name="propuestas_mejora" required></textarea>
+                    <p><label for="propuestas_mejora">Propuestas de mejora para la aplicación:</label></p>
+                    <textarea id="propuestas_mejora" name="propuestas_mejora" required></textarea>
 
                     <button type="submit" name="guardar_valoracion">Siguiente</button>
                 </form>
@@ -245,8 +245,8 @@ if (isset($_POST['iniciar_prueba'])) {
                 <p>Como observador, introduzca sus notas sobre la sesión.</p>
                 
                 <form method="post" action="pruebas_usabilidad.php">
-                    <p>Comentarios / Incidencias detectadas durante la prueba:</p>
-                    <p><textarea name="comentarios_observador" rows="6" required></textarea></p>
+                    <p><label for="comentarios_observador">Comentarios / Incidencias detectadas durante la prueba:</label></p>
+                    <p><textarea id="comentarios_observador" name="comentarios_observador" rows="6" required></textarea></p>
                     
                     <button type="submit" name="guardar_observaciones">Guardar Todo y Finalizar</button>
                 </form>

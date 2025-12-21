@@ -205,7 +205,10 @@ class Configuracion {
 
         $nombreArchivo = "exportacion_" . date('Y-m-d_H-i-s') . ".csv";
 
-        $salida = fopen($nombreArchivo, 'w');
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $nombreArchivo . '"');
+
+        $salida = fopen('php://output', 'w');
         fprintf($salida, chr(0xEF).chr(0xBB).chr(0xBF));
 
         $encabezados = [
@@ -260,10 +263,6 @@ class Configuracion {
         fclose($salida);
         $this->cerrarConexion();
 
-        header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename="' . $nombreArchivo . '"');
-        header('Content-Length: ' . filesize($nombreArchivo));
-        readfile($nombreArchivo);
         exit();
     }
 }
